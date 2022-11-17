@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统账号管理</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+
+</head>
+<body>
+    <div class="layui-fluid" style="vertical-align: middle;">
+        <div class="layui-row" style="margin: 10px auto;">
+            <div class="layui-col-md12 layui-col-sm12">
+                <span style="color: #c2c2c2;">首页&nbsp;/ </span>
+                <span style="color: rgb(121,121,121);">&nbsp;系统账号角色&nbsp;/
+                &nbsp;账号管理&nbsp;/</span>
+            </div>
+        </div>
+        <hr class="layui-border-blue">
+        <!-- 筛选条件 -->
+        <div class="layui-row" style="margin: 10px auto;">
+            <div class="layui-col-md12  layui-col-sm12">
+                <fieldset style="padding: 10px;margin: 10px;width: 97%;border: #e2e2e2 solid 1px;">
+                    <legend style="font-size: 20px;">&nbsp;筛选条件&nbsp;</legend>
+                    <form class="layui-form layui-form-pane" action="">
+                        <div class="layui-row layui-col-space20">
+                            <div class="layui-col-md4 layui-col-sm4">
+                                <div class="layui-form-item" pane >
+                                <label class="layui-form-label">登录起始时间</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                                </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md4 layui-col-sm4">
+                                <div class="layui-form-item" pane>
+                                    <label class="layui-form-label">结束时间</label>
+                                    <div class="layui-input-block">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row layui-col-space10">
+                            <div class="layui-col-md4 layui-col-sm4">
+                                <div class="layui-form-item" pane>
+                                    <label class="layui-form-label">用户名称</label>
+                                    <div class="layui-input-block">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="模糊查询账号名称" autocomplete="off" class="layui-input">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md1 layui-col-sm1">
+                                <button type="button" class="layui-btn layui-btn-radius layui-btn-warm">重置</button>
+                            </div>
+                            <div class="layui-col-md1 layui-col-sm1">
+                                <button type="button" class="layui-btn layui-btn-radius layui-btn-normal">搜索</button>
+                            </div>
+                        </div>
+                    </form>                      
+                </fieldset>
+            </div>
+        </div>
+        <!-- 数据表单 -->
+        <div class="layui-row" style="margin: 10px auto;">
+            <div class="layui-col-md12  layui-col-sm12">
+                <table class="layui-hide" id="test" lay-filter="test"></table>
+            </div>
+        </div>
+    </div>
+
+
+    
+ 
+    <script type="text/html" id="toolbarDemo">
+      <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="empty">新增账号</button>
+        <button class="layui-btn layui-btn-sm" lay-event="empty">下载模板</button>
+        <button class="layui-btn layui-btn-sm" lay-event="empty">批量上传</button>
+        <button class="layui-btn layui-btn-sm" lay-event="empty">批量下载</button>
+        <button class="layui-btn layui-btn-sm" lay-event="empty">批量删除</button>
+      </div>
+    </script>
+     
+    <script type="text/html" id="barDemo">
+      <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+      <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+                  
+              
+    <script src="./layui/layui.js" charset="utf-8"></script>
+    <script>
+        layui.use('table', function(){
+          var table = layui.table;
+          
+          table.render({
+            elem: '#test'
+            ,url:'./json/userCtr.json'/*tpa=https://www.layui.site/test/table/demo1.json*/
+            ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+              title: '提示'
+              ,layEvent: 'LAYTABLE_TIPS'
+              ,icon: 'layui-icon-tips'
+            }]
+            ,title: '用户数据表'
+            ,cols: [[
+              {type: 'checkbox', fixed: 'left'}
+              ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
+              ,{field:'username', title:'用户名称', width:120, edit: 'text'}
+              ,{field:'password', title:'密码', width:150, edit: 'text', templet: function(res){
+                return '<em>'+ res.email +'</em>'
+              }}
+              ,{field:'last_login_time', title:'最后登录时间', width:80, edit: 'text', sort: true}
+              ,{field:'login_count', title:'登录次数', width:100}
+              ,{field:'phone', title:'联系方式'}
+              ,{field:'age', title:'年龄', width:80, sort: true}
+              ,{field:'name', title:'姓名', width:100, sort: true}
+              ,{field:'role', title:'角色', width:120}
+              ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+            ]]
+            ,page: true
+          });
+          
+          //头工具栏事件
+          table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+              case 'getCheckData':
+                var data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+              break;
+              case 'getCheckLength':
+                var data = checkStatus.data;
+                layer.msg('选中了：'+ data.length + ' 个');
+              break;
+              case 'isAll':
+                layer.msg(checkStatus.isAll ? '全选': '未全选');
+              break;
+              
+              //自定义头工具栏右侧图标 - 提示
+              case 'LAYTABLE_TIPS':
+                layer.alert('这是工具栏右侧自定义的一个图标按钮');
+              break;
+            };
+          });
+          
+          //监听行工具事件
+          table.on('tool(test)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'del'){
+              layer.confirm('真的删除行么', function(index){
+                obj.del();
+                layer.close(index);
+              });
+            } else if(obj.event === 'edit'){
+              layer.prompt({
+                formType: 2
+                ,value: data.email
+              }, function(value, index){
+                obj.update({
+                  email: value
+                });
+                layer.close(index);
+              });
+            }
+          });
+        });
+</script>    
+
+</body>  
+</html>

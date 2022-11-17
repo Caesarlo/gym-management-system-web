@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统账号管理</title>
+    <style>
+        .layui-layer-title {
+            background-color: #F6F6F6;
+        }
+
+        .layui-layer-content .layui-form-label {
+            background-color: #F6F6F6;
+        }
+
+
+        .upload-file span {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .upload-file input[type='file'] {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div class="layui-fluid" style="vertical-align: middle;">
+    <div class="layui-row">
+        <div class="layui-col-md12 layui-col-sm12">
+            <span style="color: #c2c2c2;">首页&nbsp;/ </span>
+            <span style="color: rgb(121,121,121);">&nbsp;会员信息管理&nbsp;/
+                &nbsp;会员管理&nbsp;/</span>
+        </div>
+    </div>
+    <hr class="layui-border-blue">
+    <!-- 筛选条件 -->
+    <div class="layui-row" style="margin: 10px auto;">
+        <div class="layui-col-md12  layui-col-sm12">
+            <fieldset style="padding: 10px;margin: 10px;width: 97%;border: #e2e2e2 solid 1px;">
+                <legend style="font-size: 20px;">&nbsp;筛选条件&nbsp;</legend>
+                <table class="layui-table" lay-size="lg">
+                    <tbody>
+                    <tr>
+                        <td>用户头像</td>
+                        <td><img src="./img/user_test.png" alt=""></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="upload-file">
+                            <input type="file" accept="image/*" name="image_file" class="image_file" multiple="true">
+                            <span class="layui-btn">上传头像</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>账户名</td>
+                        <td>111</td>
+                    </tr>
+                    <tr>
+                        <td>密码</td>
+                        <td>111</td>
+                    </tr>
+                    <tr>
+                        <td>姓名</td>
+                        <td>111</td>
+                    </tr>
+                    <tr>
+                        <td>联系方式</td>
+                        <td>111</td>
+                    </tr>
+                    <tr>
+                        <td>年龄</td>
+                        <td>111</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

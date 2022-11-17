@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<form class="layui-form layui-form-pane" action="">
+    <div class="layui-form-item" pane>
+          <label class="layui-form-label">用户名称</label>
+          <div class="layui-input-block">
+          <input type="text" name="username" required lay-verify="required" autocomplete="off" class="layui-input" id="username_prompt_input" value="username">
+          </div>
+      </div>
+      <div class="layui-form-item" pane>
+          <label class="layui-form-label">密码</label>
+          <div class="layui-input-block">
+          <input type="password" name="password" required lay-verify="required" autocomplete="off" class="layui-input" id="password_prompt_input" value="password">
+          </div>
+      </div>
+      <div class="layui-form-item" pane>
+          <label class="layui-form-label">姓名</label>
+          <div class="layui-input-block">
+          <input type="text" name="name" required lay-verify="required" autocomplete="off" class="layui-input" id="name_prompt_input" value="name">
+          </div>
+      </div>
+      <div class="layui-form-item" pane>
+          <label class="layui-form-label">联系方式</label>
+          <div class="layui-input-block">
+          <input type="text" name="phone" required lay-verify="required|phone" autocomplete="off" class="layui-input" id="phone_prompt_input" value="phone">
+          </div>
+      </div>
+      <div class="layui-form-item" pane>
+          <label class="layui-form-label">年龄</label>
+          <div class="layui-input-block">
+          <input type="text" name="age" required lay-verify="required" autocomplete="off" class="layui-input" id="age_prompt_input" value="age">
+          </div>
+      </div>
+      <div class="layui-form-item" pane>
+          <label class="layui-form-label">角色</label>
+          <div class="layui-input-block">
+              <select name="role" lay-verify="required" id="role_select_prompt" lay-filter="addRoleSel">
+                  <option value=""></option>
+              </select>
+          </div>
+      </div>
+      </form>
+      <script>
+          layui.use(['form'], function(){
+              $ = layui.$,
+              form = layui.form;
+              $(function(){
+                  // console.log("xxx")
+                  //给role的下拉列表添加元素
+                  for(i of role){
+                      $("#role_select_prompt").append("<option value='"+i+"'>"+i+"</option>");
+                  }
+                  form.render();
+              });
+          })
+    </script>
+</body>
+</html>
